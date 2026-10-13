@@ -12,11 +12,33 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 
 ## Features
 
-- Register with an email address and password.
-- Sign in and store the returned JWT in browser `localStorage`.
-- Load the current user's profile on the protected dashboard.
+- Responsive login and registration screens with alternating indigo–violet–blue gradient panels and a frosted-glass visual style.
+- Register with an email address, password, and matching password confirmation. Passwords must be at least 8 characters; backend validation remains authoritative.
+- Toggle visibility independently for the password and confirmation fields; login also has a password visibility toggle.
+- Sign in and store the returned JWT in `sessionStorage` by default; “Remember me” keeps it in `localStorage` across browser sessions.
+- Load the current user's profile on the protected dashboard, styled with the same glass and gradient treatment.
 - Sign out by removing the stored JWT.
+- Clear an expired/invalid JWT and redirect to login when the dashboard receives an unauthorized response.
 - Display API errors on the registration, login, and dashboard screens.
+- Use Zephyra Tech browser-tab metadata and a custom gradient favicon.
+
+## Screenshots
+
+For a README portfolio section, capture these screens at a consistent desktop viewport and add the image files under `screenshots/` in this repository:
+
+| Suggested order | Screenshot file | What to show |
+| --- | --- | --- |
+| 1 | `screenshots/login.png` | Login form, gradient welcome panel, and “Remember me” |
+| 2 | `screenshots/register.png` | Registration form with password confirmation and the reversed gradient panel |
+| 3 | `screenshots/dashboard.png` | Single-card dashboard with profile details and sign-out button |
+
+Once the images are added, embed them here with Markdown, for example:
+
+```markdown
+![Login page](./screenshots/login.png)
+```
+
+Use a test account for screenshots and avoid showing real passwords, production secrets, or personal account data.
 
 ## Routes
 
@@ -29,6 +51,7 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 The dashboard redirects visitors without a stored token to `/login`. The frontend sends the token as a Bearer token when requesting the profile.
 
 The root route (`/`) redirects to `/login`.
+The login and registration pages use a responsive split-panel layout with the indigo welcome panel on opposite sides. The dashboard uses a single glass-style card.
 
 ## Backend API
 
@@ -50,7 +73,7 @@ Registration and login requests use JSON:
 }
 ```
 
-Login returns a JWT. The frontend accepts a token in a `token`, `jwt`, or `accessToken` response field (or as a plain-text response), saves it as `token` in `localStorage`, and redirects to `/dashboard`.
+Login returns a JWT. The frontend accepts a token in a `token`, `jwt`, or `accessToken` response field (or as a plain-text response), saves it as `token` in `sessionStorage` unless “Remember me” is selected (then `localStorage`), and redirects to `/dashboard`.
 
 The profile request includes this header:
 
@@ -122,5 +145,5 @@ To deploy the frontend to Vercel:
 5. Verify the backend health endpoint and test registration, login, profile loading, and sign out.
 
 Do not put credentials, JWT signing keys, or other secrets in `NEXT_PUBLIC_` variables or commit them to source control.
-The registration form requires a password of at least 8 characters to match backend validation. Frontend checks improve usability only; the backend remains authoritative. The current assessment implementation stores JWTs in `localStorage`, where JavaScript can access them. For production, consider an `HttpOnly`, `Secure`, `SameSite` cookie design with appropriate CSRF protections.
+The registration form requires a password of at least 8 characters to match backend validation. Frontend checks improve usability only; the backend remains authoritative. The current assessment implementation stores JWTs in browser storage, where JavaScript can access them. For production, consider an `HttpOnly`, `Secure`, `SameSite` cookie design with appropriate CSRF protections.
 Git ignore rules do not automatically exclude files from ZIP archives. Exclude `.env.local`, `node_modules`, and generated build output before sharing or publishing an archive.

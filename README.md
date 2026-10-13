@@ -28,6 +28,8 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 
 The dashboard redirects visitors without a stored token to `/login`. The frontend sends the token as a Bearer token when requesting the profile.
 
+The root route (`/`) redirects to `/login`.
+
 ## Backend API
 
 The frontend reads its API base URL from `NEXT_PUBLIC_API_BASE_URL` and expects the Spring Boot backend to expose these endpoints:
@@ -120,4 +122,5 @@ To deploy the frontend to Vercel:
 5. Verify the backend health endpoint and test registration, login, profile loading, and sign out.
 
 Do not put credentials, JWT signing keys, or other secrets in `NEXT_PUBLIC_` variables or commit them to source control.
+The registration form requires a password of at least 8 characters to match backend validation. Frontend checks improve usability only; the backend remains authoritative. The current assessment implementation stores JWTs in `localStorage`, where JavaScript can access them. For production, consider an `HttpOnly`, `Secure`, `SameSite` cookie design with appropriate CSRF protections.
 Git ignore rules do not automatically exclude files from ZIP archives. Exclude `.env.local`, `node_modules`, and generated build output before sharing or publishing an archive.

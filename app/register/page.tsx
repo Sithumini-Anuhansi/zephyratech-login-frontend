@@ -78,12 +78,16 @@ export default function RegisterPage() {
               autoComplete="new-password"
               className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
               id="password"
+              minLength={8}
               name="password"
               onChange={(event) => setPassword(event.target.value)}
               required
               type="password"
               value={password}
             />
+            <p className="mt-2 text-xs text-slate-500">
+              Use at least 8 characters.
+            </p>
           </div>
 
           {error && (

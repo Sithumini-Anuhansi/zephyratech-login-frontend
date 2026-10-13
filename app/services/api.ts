@@ -9,6 +9,16 @@ export interface LoginResponse {
 
 export type UserProfile = Record<string, unknown>;
 
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
 function getApiUrl(path: string): string {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "");
 
@@ -54,7 +64,7 @@ async function request(
           ? payload.message
           : `Request failed with status ${response.status}.`;
 
-    throw new Error(message);
+    throw new ApiError(message, response.status);
   }
 
   return payload;

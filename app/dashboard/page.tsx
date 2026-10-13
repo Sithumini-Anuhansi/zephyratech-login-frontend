@@ -2,7 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { fetchUserProfile, UserProfile } from "../services/api";
+import {
+  ApiError,
+  fetchUserProfile,
+  type UserProfile,
+} from "../services/api";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -10,22 +14,43 @@ export default function DashboardPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let isActive = true;
     const token = window.localStorage.getItem("token");
 
     if (!token) {
       router.replace("/login");
-      return;
+      return () => {
+        isActive = false;
+      };
     }
 
     fetchUserProfile(token)
-      .then(setProfile)
+      .then((userProfile) => {
+        if (isActive) {
+          setProfile(userProfile);
+        }
+      })
       .catch((caughtError: unknown) => {
+        if (!isActive) {
+          return;
+        }
+
+        if (caughtError instanceof ApiError && caughtError.status === 401) {
+          window.localStorage.removeItem("token");
+          router.replace("/login");
+          return;
+        }
+
         setError(
           caughtError instanceof Error
             ? caughtError.message
             : "Unable to load your profile.",
         );
       });
+
+    return () => {
+      isActive = false;
+    };
   }, [router]);
 
   function signOut() {

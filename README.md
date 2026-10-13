@@ -20,7 +20,7 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 - Sign out by removing the stored JWT.
 - Clear an expired/invalid JWT and redirect to login when the dashboard receives an unauthorized response.
 - Display API errors on the registration, login, and dashboard screens.
-- Use Zephyra Tech browser-tab metadata and a custom gradient favicon.
+- Use Zephyra Tech browser-tab metadata and the custom Zephyra “Z” gradient logo from `app/icon.svg` as the tab icon. The default Next.js `favicon.ico` has been removed.
 
 ## Screenshots
 
@@ -39,6 +39,15 @@ Once the images are added, embed them here with Markdown, for example:
 ```
 
 Use a test account for screenshots and avoid showing real passwords, production secrets, or personal account data.
+
+To stage the custom tab icon change and screenshots from the frontend repository root:
+
+```powershell
+git add -A -- app/favicon.ico app/icon.svg screenshots/
+git status
+```
+
+Review the staged files before committing. The `app/favicon.ico` path stages its removal from Git.
 
 ## Routes
 

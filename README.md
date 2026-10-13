@@ -24,21 +24,19 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 
 ## Screenshots
 
-For a README portfolio section, capture these screens at a consistent desktop viewport and add the image files under `screenshots/` in this repository:
+### Login
 
-| Suggested order | Screenshot file | What to show |
-| --- | --- | --- |
-| 1 | `screenshots/login.png` | Login form, gradient welcome panel, and “Remember me” |
-| 2 | `screenshots/register.png` | Registration form with password confirmation and the reversed gradient panel |
-| 3 | `screenshots/dashboard.png` | Single-card dashboard with profile details and sign-out button |
+![Zephyra Tech login page](./screenshots/login.png)
 
-Once the images are added, embed them here with Markdown, for example:
+### Registration
 
-```markdown
-![Login page](./screenshots/login.png)
-```
+![Zephyra Tech registration page](./screenshots/register.png)
 
-Use a test account for screenshots and avoid showing real passwords, production secrets, or personal account data.
+### Dashboard
+
+![Zephyra Tech dashboard](./screenshots/dashboard.png)
+
+Screenshots use a test account. Do not include real passwords, production secrets, or personal account data in replacement screenshots.
 
 To stage the custom tab icon change and screenshots from the frontend repository root:
 

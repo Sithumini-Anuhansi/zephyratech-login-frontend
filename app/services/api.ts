@@ -100,7 +100,7 @@ export async function loginUser(
 }
 
 export async function fetchUserProfile(token: string): Promise<UserProfile> {
-  const payload = await request("users/profile", {
+  const payload = await request("auth/me", {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",

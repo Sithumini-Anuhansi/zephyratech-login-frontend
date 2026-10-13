@@ -38,15 +38,6 @@ Next.js frontend for the Zephyra Tech login application. It provides user regist
 
 Screenshots use a test account. Do not include real passwords, production secrets, or personal account data in replacement screenshots.
 
-To stage the custom tab icon change and screenshots from the frontend repository root:
-
-```powershell
-git add -A -- app/favicon.ico app/icon.svg screenshots/
-git status
-```
-
-Review the staged files before committing. The `app/favicon.ico` path stages its removal from Git.
-
 ## Routes
 
 | Frontend route | Purpose |

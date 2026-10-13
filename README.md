@@ -30,7 +30,7 @@ The dashboard redirects visitors without a stored token to `/login`. The fronten
 
 ## Backend API
 
-The frontend expects the Spring Boot backend to run at `http://localhost:8080` and expose these endpoints:
+The frontend reads its API base URL from `NEXT_PUBLIC_API_BASE_URL` and expects the Spring Boot backend to expose these endpoints:
 
 | Method | Endpoint | Access | Purpose |
 | --- | --- | --- | --- |
@@ -120,3 +120,4 @@ To deploy the frontend to Vercel:
 5. Verify the backend health endpoint and test registration, login, profile loading, and sign out.
 
 Do not put credentials, JWT signing keys, or other secrets in `NEXT_PUBLIC_` variables or commit them to source control.
+Git ignore rules do not automatically exclude files from ZIP archives. Exclude `.env.local`, `node_modules`, and generated build output before sharing or publishing an archive.

@@ -66,6 +66,12 @@ The frontend stores the JWT in browser storage and sends it as a Bearer token wh
 
 The screenshots use demo data only. Do not include private credentials, production secrets, or personal account information in replacement screenshots.
 
+## Deployment evidence
+
+The following Vercel project screenshot shows the production deployment status and the deployed frontend domain.
+
+![Vercel production deployment for the Zephyra Tech frontend](./screenshots/vercel-production-deployment.png)
+
 ## Technology
 
 - Next.js 16 App Router
